@@ -1,0 +1,26 @@
+---
+title: 'SAST Tools'
+desc: 'Una desc, Esto es un hello world'
+tags: 'markdown, netxjs, ssr, blog, audits'
+---
+
+# Static Application Security Testing
+
+SAST Tools analyze the source code or compiled versions of code 
+to find security flaws.
+
+Identifies certain well-known vulnerabilities, 
+as Buffer overflows, SQL injection, etc.
+
+The output highlight the problematic code, by filename, location, 
+line number, and even the affected code snippet.
+
+I tried 10 SAST tools with the purpose to do a simple analysis of an webapp code, 
+finally I found that in my case Snyk and Samgrep was the most simple and fast to use. 
+The code analysis is not so robust as the dependency analysis but it's very useful.
+Both runs the code analysis through the CLI from inside the project folder.
+
+* semgrep scan --config auto
+* snyk code test
+
+After all, Snyk and Samgrep are easy to download, install and use. Both do dependency analysis and static code analysis. Both has an easy to use CLI.Recommended to start.
