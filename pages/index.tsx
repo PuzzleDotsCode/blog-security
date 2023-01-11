@@ -23,9 +23,9 @@ interface PostsArray {
 export default function Home({ posts }: PostsArray) {
   return (
     <>
-      <HtmlHead/>
+      <HtmlHead />
 
-      <Navigation/>
+      <Navigation />
 
       <main className={styles.main}>
 
@@ -37,7 +37,6 @@ export default function Home({ posts }: PostsArray) {
                 key={post.slug}
                 href={`/${post.slug}`}
                 className={styles.card}
-                // target="_blank"
                 rel="noopener noreferrer"
               >
                 <h2 className={inter.className}>
@@ -46,6 +45,13 @@ export default function Home({ posts }: PostsArray) {
                 <p className={inter.className}>
                   {post.desc}
                 </p>
+                {
+                  post.tags.split(",").map(tag => (
+                    <span className='badge'>
+                      {tag}
+                    </span>
+                  ))
+                }
               </Link>
             ))
           }
