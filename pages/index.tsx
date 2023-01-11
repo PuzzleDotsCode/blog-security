@@ -47,7 +47,7 @@ export default function Home({ posts }: PostsArray) {
                 </p>
                 {
                   post.tags.split(",").map(tag => (
-                    <span className='badge'>
+                    <span key={tag} className='badge'>
                       {tag}
                     </span>
                   ))
