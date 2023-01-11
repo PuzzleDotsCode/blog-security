@@ -1,0 +1,19 @@
+.applogo {
+  /* height: 40vmin; */
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .applogo {
+    animation: applogo-spin infinite 5s linear;
+  }
+}
+
+@keyframes applogo-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
