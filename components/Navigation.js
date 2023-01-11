@@ -9,8 +9,8 @@ const Navigation = () => {
 
         <div className={styles.description}>
           <p>
-            Don't sabotage infrastructure,&nbsp;
-            <span className={styles.code}>Audit the World.</span>
+            Don't sabotage infrastructure,
+            <span className={styles.code}> Audit the World.</span>
           </p>
           <Link href={`/`}>
             <Image

@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 
 import { getAllFilesMetadata } from "../lib/mdx"
 
+import HtmlHead from "../components/HtmlHead"
 import Navigation from "../components/Navigation"
 
 const inter = Inter({ subsets: ['latin'] })
@@ -23,12 +23,7 @@ interface PostsArray {
 export default function Home({ posts }: PostsArray) {
   return (
     <>
-      <Head>
-        <title>hatori's blog</title>
-        <meta name="description" content="The Audit point of view of life, Ethical Hacking and White Hat mindset." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <HtmlHead/>
 
       <Navigation/>
 

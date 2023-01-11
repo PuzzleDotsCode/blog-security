@@ -1,18 +1,13 @@
-import Head from 'next/head'
 import { MDXRemote } from "next-mdx-remote"
 import { getFilesBySlug, getFiles } from "../lib/mdx"
+import HtmlHead from "../components/HtmlHead"
 import Navigation from '../components/Navigation'
 
 
-export default function Post({ source, frontmatter }) {
+export default function Post({ source }) {
     return (
         <>
-            <Head>
-                <title>hatori's blog</title>
-                <meta name="description" content="The Audit point of view of life, Ethical Hacking and White Hat mindset." />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <HtmlHead/>
 
             <Navigation />
 
