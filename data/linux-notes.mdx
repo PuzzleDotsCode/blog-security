@@ -1,0 +1,27 @@
+---
+title: 'Linux Notes'
+desc: 'Notes about permissions and other stuff'
+tags: 'linux,permissions, commands'
+---
+
+# Notes about permissions and other stuff
+
+* Assign owner and group to a file
+
+```
+# 1. chown & chgrp
+chown [new owner] [file/dir]
+chgrp [new group] [file/dir]
+
+# 2. condensed
+chown [new owner]:[new group] [file/dir]
+```
+
+* Filter by arguments
+
+```
+# grep + awk-FS (delimiter)
+cat /etc/passwd | grep "sh$" | awk '{print $1}' FS=":"
+
+$> root
+```
