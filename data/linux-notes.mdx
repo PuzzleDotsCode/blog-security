@@ -17,6 +17,16 @@ chgrp [new group] [file/dir]
 chown [new owner]:[new group] [file/dir]
 ```
 
+* Group assignations
+
+```
+# create a group
+groupadd [name]
+
+# include a user in a group
+usermod -a -G [group] [user]
+```
+
 * Filter by arguments
 
 ```
@@ -25,3 +35,4 @@ cat /etc/passwd | grep "sh$" | awk '{print $1}' FS=":"
 
 $> root
 ```
+
