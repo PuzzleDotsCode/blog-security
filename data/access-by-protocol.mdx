@@ -1,0 +1,83 @@
+---
+title: 'Access by Protocol'
+desc: 'Default access and access with tools'
+tags: 'ftp,telnet,smbclient,mysql,xfreerdp,rsync'
+---
+
+# Access by Protocol
+
+Usernames that allows to log without providing a password
+
+* ftp: anonymous
+
+```
+ftp anonymous@10.129.235.124
+```
+
+* telnet: root
+
+```
+# Telnet shows a login interface after connection
+$> telnet [ip-address] [port]
+$> login: root
+Welcome to ...
+```
+
+* smbclient
+
+```
+# 1. List avaible shares (after rejection)
+$> smbclient -L 10.129.19.148
+
+$> Password for [WORKGROUP\root]:
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        ADMIN$          Disk      Remote Admin
+        C$              Disk      Default share
+        IPC$            IPC       Remote IPC
+        WorkShares      Disk      
+Reconnecting with SMB1 for workgroup listing.
+
+# Connection with a Share
+$> smbclient -U '%' -N \\\\10.129.142.197\\WorkShares
+```
+
+* mysql: root
+
+```
+mysql --host=10.129.187.6 --user=root
+```
+
+* xfreerdp: Administrator (Windows Remote Desktop Protocol)
+
+```
+xfreerdp /u:Administrator /v:10.129.213.226:3389 
+```
+
+* rsync
+
+```
+# 1. list the shares
+rsync 10.129.223.16::
+$> public          Anonymous Share
+
+# 2. access by share
+rsync 10.129.223.16::public/
+
+# 3. download resource
+rsync 10.129.223.16::public/flag.txt flag.txt
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

