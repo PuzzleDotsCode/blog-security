@@ -1,0 +1,31 @@
+---
+title: 'Commands Pills'
+desc: 'Mix of commands, processes and oneliners'
+tags: 'commands,tools,pills'
+---
+
+
+
+* Local port forwarding
+
+```
+# SSH tunneling: Open a port in the remote host and connect it with a port on the localhost
+# Example: ssh -L [attacker-port]:[victim-address]:[victim-port] -N -T [victim-username]@[victim-address]
+ssh -L 9999:example.org:80 -N -T username@remote_host
+```
+
+* Hydra ssh brute forcing
+
+```
+hydra -L username-list.txt -p 'password' [remote-address] ssh
+```
+
+
+
+
+
+
+
+
+
+

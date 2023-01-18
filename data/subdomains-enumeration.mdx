@@ -1,0 +1,32 @@
+---
+title: 'Subdomains Enumeration'
+desc: 'Discovering subdomains'
+tags: 'crunch,ffuf,gobuster'
+---
+
+# Characteristics of Subdomains
+
+Sometimes subdomains could be located in a different ip address 
+from the domain or as a virtual host.
+
+In this case, the target subdomain is two letters long, then crunch creates a wordlist 
+two characters long with all possible combinations.
+
+```
+crunch 2 2 > 2-letters-wordlist.txt
+```
+
+
+* ffuf
+
+```
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-20000.txt -u http://target.com -H "Host: FUZZ.target.com" -mc "404"
+
+# Aditional parameters
+-fs [number] : filter by file size
+-c : use colors in the result
+
+# Filters
+-mc : match status code
+-fc : filtr status code
+```

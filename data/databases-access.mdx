@@ -25,6 +25,21 @@ mysql --host=10.129.187.6 --user=root
 mongo 10.129.183.245:27017 
 ```
 
+* psql
+
+```
+psql -h [host] -U [username] -p [port]
+
+# commands
+\list : show the list of databases
+\c [database] : use the database
+\d : list tables
+\du+ : show users roles
+\dt [table] : use a table
+
+# commands should carry " ; " (semicolon)
+SELECT * from flagtable;
+```
 
 
 

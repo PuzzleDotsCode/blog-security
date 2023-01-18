@@ -36,3 +36,12 @@ cat /etc/passwd | grep "sh$" | awk '{print $1}' FS=":"
 $> root
 ```
 
+* Internet network services list: port numbers and protocol types. 
+
+``
+# services list
+less /etc/services
+
+# active services
+ss -tulpn | grep 'LISTEN'
+```
