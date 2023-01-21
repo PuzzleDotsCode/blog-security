@@ -20,9 +20,17 @@ ssh -L 9999:example.org:80 -N -T username@remote_host
 hydra -L username-list.txt -p 'password' [remote-address] ssh
 ```
 
+* Character Count
 
+```
+echo -n "asdasdasd" | wc -c
+```
 
+* base64 decode
 
+```
+echo "sA6Prg==" | base64 -d 
+```
 
 
 

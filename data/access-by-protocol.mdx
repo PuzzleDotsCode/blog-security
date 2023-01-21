@@ -23,11 +23,13 @@ $> login: root
 Welcome to ...
 ```
 
-* smbclient
+* smbclient: Administrator
 
 ```
 # 1. List avaible shares (after rejection)
-$> smbclient -L 10.129.19.148
+option 1: smbclient -L 10.129.19.148
+option 2: smbclient -L 10.129.19.148 --user Administrator
+option 3: smbclient -L 10.129.19.148 -U Administrator
 
 $> Password for [WORKGROUP\root]:
 
@@ -40,7 +42,8 @@ $> Password for [WORKGROUP\root]:
 Reconnecting with SMB1 for workgroup listing.
 
 # Connection with a Share
-$> smbclient -U '%' -N \\\\10.129.142.197\\WorkShares
+option A: smbclient -U '%' -N \\\\10.129.142.197\\WorkShares
+option B: smbclient \\\\10.129.142.197\\ADMIN$ -U Administrator
 ```
 
 * mysql: root
