@@ -12,18 +12,37 @@ tags: 'theory,techniques,surface'
         * SQLi
         * Server Side Template Injection (SSTI)
         * XSS (Cross Site Scriptting)
+    * HTML File Input element
+        * Local File Inclusion, allows:
+            * Reverse Shell
+    * Cookie/Session Tampering, allows
+        * Lateral Movement
+        * Privilage Escalation
+    * Brute Force
 
 * System Attack
     * Port Knocking
-    * Local port forwarding
+    * Local port forwarding, allows:
+        * Reverse Shell
+    * Privilage Escalation using services/binaries
+    * Brute Force
 
 * URL Attack
-    * Directory Listing : Access folders through URL add/remove parameters
-    * Remote/Local File Inclusion
+    * Directory Listing : allows:
+        * Access folders through URL add/remove parameters
+    * Remote File Inclusion, allows:
+        * Reverse Shell
     * XSS (Cross Site Scriptting)
+    * Path Traversal, allows
+        * Command Execution
+        * Information Disclosure
+    * URL Tampering, allows:
+        * Lateral Movement
+        * Privilage Escalation
+        * Information Disclosure
 
 * Default Credentials
-    * ssh / ftp
+    * ssh / ftp / smb / telnet
     * login page
 
 

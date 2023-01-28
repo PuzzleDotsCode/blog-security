@@ -6,13 +6,6 @@ tags: 'commands,tools,pills'
 
 
 
-* Local port forwarding
-
-```
-# SSH tunneling: Open a port in the remote host and connect it with a port on the localhost
-# Example: ssh -L [attacker-port]:[victim-address]:[victim-port] -N -T [victim-username]@[victim-address]
-ssh -L 9999:example.org:80 -N -T username@remote_host
-```
 
 * Hydra ssh brute forcing
 
@@ -32,7 +25,12 @@ echo -n "asdasdasd" | wc -c
 echo "sA6Prg==" | base64 -d 
 ```
 
+* Set a Bash
 
+```
+python3 -c 'import pty;pty.spawn("/bin/bash/");'
+export TERM=xterm
+```
 
 
 

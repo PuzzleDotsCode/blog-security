@@ -1,11 +1,17 @@
 ---
-title: 'Remote File Include'
-desc: 'PHP upon Windows Services abusing NTLM'
-tags: 'windows,responder,tools'
+title: 'File Inclusion'
+desc: 'Unprotected URL and Services allows assets exploration.'
+tags: 'techniques,tools'
 ---
 
+# File Inclusion: Local & Remote
 
-# Remote File Include
+Unprotected URL and Services allows assets exploration.
+
+
+## Remote File Includsion
+
+* PHP upon Windows Services abusing NTLM
 
 This access type abuse the Local File Include (LFI) vulnerability. Which allows to include paths in the URL like "http://target.com/index.php?page=../../../../../../../../windows/system32/drivers/etc/hosts".
 
