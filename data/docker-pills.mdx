@@ -1,0 +1,122 @@
+---
+title: 'Docker Pills'
+desc: 'CRUD actions over CLI and HUB'
+tags: 'docker,cli'
+---
+
+# Docker Pills
+
+#### General Ops
+
+```
+# active containers
+docker ps -a
+
+# active images
+docker images -a
+
+# remove containers
+docker stop $(docker ps -aq) && docker rm (docker ps -aq)
+
+# remove images
+docker rmi $(docker images -aq)
+```
+
+## Commit Changes
+
+If the image is already linked to the remote repo by a tag, then just "tag" the local image is enough because the "push" is automatic.
+
+```
+# already linked
+docker tag [local-image-name] [username]/[repo-name]
+```
+
+If the image is not linked to the remote repo by a tag, firstly bind the container with the repo by a tag. Then, It's ready to push.
+
+```
+# not linked
+docker commit [CONTAINER_ID] [image_name]
+docker push [username]/[repo-name]
+```
+
+## Login
+
+```
+docker login -u [username] -p [password]
+```
+
+# Process
+
+To Dockerize an app, create the image, run the container.
+
+1. create the Dockerfile
+
+```
+# Support System
+FROM node:17-alpine
+
+# Work Dir
+WORKDIR /client
+
+# Image Actions
+COPY . /client
+
+# Buildtime Command Executions
+RUN npm install
+
+# Container Ports Exposure
+EXPOSE 3000
+
+# Runtime Command Execution
+CMD ["npm","run","dev"]
+```
+
+2. build the image, optionally give it a tag
+
+```
+docker build [-t tag_name] .    
+```
+
+3. run the image, ports, (optionally by tag) in current location
+
+```
+docker run -p [port]:[port] [tag]
+```
+
+
+---
+
+
+## Caching Node Modules
+
+Caching Node Modules avoid the re-installation of them each time the image is built. Only if the `package.json` file.
+
+```
+# Support System
+FROM node:17-alpine
+
+# Work Dir
+WORKDIR /client
+
+# Image Actions
+COPY package.json /client
+
+# Buildtime Command Executions
+RUN npm install
+
+# Image Actions
+COPY . /client
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

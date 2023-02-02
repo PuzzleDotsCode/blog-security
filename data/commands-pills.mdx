@@ -28,10 +28,39 @@ echo "sA6Prg==" | base64 -d
 * Set a Bash
 
 ```
-python3 -c 'import pty;pty.spawn("/bin/bash/");'
+python3 -c 'import pty;pty.spawn("/bin/bash");'
 export TERM=xterm
 ```
 
+* john the ripper: crack zip password (old versions)
+
+```
+# 1. get the hash
+zip2john protected.zip > zip.hashes
+
+# 2. john unhashing
+john zip.hashes
+
+$ ...
+$ (21*paswd_21)      (protected.zip)
+$ ...
+
+# OPTIONAL: recover the password
+john --show zip.hashes
+$ protected.zip:21*passwd_21::protected.zip:files
+```
+
+* Bluetooth start
+
+```
+systemctl start bluetooth 
+```
+
+* Add [some] to the PATH environmental variable
+
+```
+export PATH=[some]:$PATH
+```
 
 
 

