@@ -20,6 +20,15 @@ docker stop $(docker ps -aq) && docker rm (docker ps -aq)
 
 # remove images
 docker rmi $(docker images -aq)
+
+# remove images, containers & volumes from docker system
+docker systen prune -a
+
+# start (build creates a new container)
+docker start [container-name]
+
+# stop
+docker stop [container-name]
 ```
 
 ## Commit Changes
@@ -83,6 +92,12 @@ docker build [-t tag_name] .
 docker run -p [port]:[port] [tag]
 ```
 
+4. aws tag
+
+```
+docker tag [local-image]:[tag (both should mathc)] [aws-resource-location]:[tag (both should mathc)]
+```
+
 
 ---
 
@@ -109,7 +124,14 @@ COPY . /client
 ```
 
 
+---
 
+
+## Update AWS ECS
+
+```
+aws ecs update-service --cluster [cluster-name] --service [service-name] --force-new-deployment --region [region]
+```
 
 
 
