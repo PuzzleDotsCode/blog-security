@@ -1,0 +1,86 @@
+---
+title: 'Linux Manual'
+desc: 'Basic use of Linux Manual'
+tags: 'linux,manual,man'
+---
+
+
+
+
+# Man Pages
+
+Next, let's dig into Kali Linux usage and explore some basic Linux commands.
+
+Most executable programs intended for the Linux command line provide a formal piece of documentation often called manual or man pages.1 A special program called man is used to view these pages. Man pages generally have a name, a synopsis, a description of the command's purpose, and the corresponding options, parameters, or switches. Let's look at the man page for the ls command:
+
+```bash
+kali@kali:~$ man ls
+Listing 3 - Exploring the man page for the ls command
+```
+
+Man pages contain not only information about user commands, but also documentation regarding system administration commands, programming interfaces, and more. The content of the manual is divided into sections that are numbered as follows:
+
+SECTION |	CONTENTS
+-|-
+1 | User Commands
+2 | Programming interfaces for kernel system calls
+3 | Programming interfaces to the C library
+4 | Special files such as device nodes and drivers
+5 | File formats
+6 | Games and amusements such as screen-savers
+7 | Miscellaneous
+8 | System administration commands
+
+Table 1 - man page organization
+
+To determine the appropriate manual section, simply perform a keyword search. For example, let's assume we are interested in learning a bit more about the file format of the /etc/passwd file. Typing man passwd at the command line will show information regarding the passwd command from section 1 of the manual (Figure 2), which is not what we are interested in.
+
+However, if we use the -k option with man, we can perform a keyword search as shown below:
+
+```bash
+kali@kali:~$ man -k passwd
+chgpasswd (8)        - update group passwords in batch mode
+chpasswd (8)         - update passwords in batch mode
+exim4_passwd (5)     - Files in use by the Debian exim4 packages
+exim4_passwd_client (5) - Files in use by the Debian exim4 packages
+expect_mkpasswd (1)  - generate new password, optionally apply it to a user
+fgetpwent_r (3)      - get passwd file entry reentrantly
+getpwent_r (3)       - get passwd file entry reentrantly
+gpasswd (1)          - administer /etc/group and /etc/gshadow
+grub-mkpasswd-pbkdf2 (1) - generate hashed password for GRUB
+htpasswd (1)         - Manage user files for basic authentication
+...
+```
+Here's Performing a passwd keyword search with man
+
+We can further narrow the search with the help of a regular expression:2
+
+```bash
+kali@kali:~$ man -k '^passwd$'
+passwd (1)           - change user password
+passwd (1ssl)        - compute password hashes
+passwd (5)           - the password file
+```
+Here's Narrowing down our search
+
+In the above command, the regular expression is enclosed by a caret (^) and dollar sign ($), to match the entire line and avoid sub-string matches. We can now look at the exact passwd manual page we are interested in by referencing the appropriate section:
+```bash
+kali@kali:~$ man 5 passwd
+```
+Here's Using man to look at the manual page of the /etc/passwd file format
+
+Man pages are typically the quickest way to find documentation on a given command, so take some time to explore them in a bit more detail.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

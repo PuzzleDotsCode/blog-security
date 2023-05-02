@@ -5,16 +5,15 @@ tags: 'techniques'
 ---
 
 
+# Standard Process
 
-* reccon
+1. Enumeration: Identify target assets
+2. Information Gathering
+    * Versions
+    * Libraries/Plugins/Software/Frameworks
+    * OS and Services
+    * Emails & Domains
 
-```
-nmap --min-rate 5000 -T20 -O -p- --open -Pn -sC 10.129.130.219
-
-gobuster dir -u http://10.129.130.219 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 20 
-
-
-```
 
 ## Objetives
 
@@ -30,6 +29,17 @@ gobuster dir -u http://10.129.130.219 -w /usr/share/wordlists/SecLists/Discovery
     * Reverse Shell
     * Local File Inclusion
     * Remote File Inclusion
+* Remote Command Execution
+    * Reverse Shell
+        * Abuse of Files and/or Services
+            * Execute instruction through System Files or Programs
+* Privilage Escalation
+    * Lateral Movement
+        * Abuse of Files and/or Services
+            * Execute instruction through System Files or Programs
+    * Vertical Movement
+        * Abuse of Files and/or Services
+            * Execute instruction through System Files or Programs
 
 
 
@@ -52,6 +62,41 @@ gobuster dir -u http://10.129.130.219 -w /usr/share/wordlists/SecLists/Discovery
 * Technologies & Services
     * CVEs PoC
 * URL tampering
+
+
+
+
+
+---
+
+* reccon
+
+```
+nmap --min-rate 5000 -T20 -O -p- --open -Pn -sC 10.129.130.219
+
+gobuster dir -u http://10.129.130.219 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 20 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
