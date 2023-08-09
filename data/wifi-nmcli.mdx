@@ -1,0 +1,55 @@
+---
+title: 'How to connect to Wifi using nmcli'
+desc: 'This is not about hacking Wifi'
+tags: 'wifi,nmcli,terminal,tools'
+---
+
+
+# Use nmcli to 
+
+This is not about hacking Wifi, my current Kali doesn't expose available wifi networks by default on Desktop bar. There's no GUI helping on this. Configuring from NetworkManager is also another option.
+
+1. Check WiFi Interface 
+
+```sh
+ifconfig wlan0
+ip link show wlan0
+```
+
+2. Enable WiFi Interface (not working, wlan0 only up when connected)
+
+```sh
+sudo ifconfig wlan0 up
+```
+
+3. Scan available networks for the interface
+
+```sh
+sudo iwlist wlan0 scan
+
+# should throw something like:
+Cell 05 - Address: 12:28:28:7:BC:CF (this Address is the BSSID)
+          ESSID:"HomeNetwork"
+          ...etc
+```
+
+4. Use NetworkManager CLI to connect
+
+```sh
+# required data
+# ESSID : Network Name ("HomeNetwork")
+# Password : Wifi password ("myDogsName")
+# BSSID : Wireless access point address ("00:1A:2B:3C:4D:5E")
+
+sudo nmcli device wifi connect HomeNetwork password myDogsName bssid 00:1A:2B:3C:4D:5E
+```
+
+The BSSID is a unique identifier for a specific wireless access point (AP). It is usually a hexadecimal value and looks something like this: "00:1A:2B:3C:4D:5E". BSSID is not something you typically enter manually; it's usually automatically determined by your device's WiFi hardware when it scans for available networks.
+
+In most home or small office setups, you usually connect to networks using the SSID and password. If you're not in an environment with multiple access points using the same SSID, you generally don't need to specify the BSSID.
+
+
+
+
+
+
