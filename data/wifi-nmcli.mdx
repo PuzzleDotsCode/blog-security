@@ -41,7 +41,7 @@ Cell 05 - Address: 12:28:28:7:BC:CF (this Address is the BSSID)
 # Password : Wifi password ("myDogsName")
 # BSSID : Wireless access point address ("00:1A:2B:3C:4D:5E")
 
-sudo nmcli device wifi connect HomeNetwork password myDogsName bssid 00:1A:2B:3C:4D:5E
+sudo nmcli device wifi connect "HomeNetwork" password "myDogsName" bssid "00:1A:2B:3C:4D:5E"
 ```
 
 The BSSID is a unique identifier for a specific wireless access point (AP). It is usually a hexadecimal value and looks something like this: "00:1A:2B:3C:4D:5E". BSSID is not something you typically enter manually; it's usually automatically determined by your device's WiFi hardware when it scans for available networks.
