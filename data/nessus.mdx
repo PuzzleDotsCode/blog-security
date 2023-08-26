@@ -1,0 +1,42 @@
+---
+title: "Nessus setup/init"
+desc: "This bastard runs differntly from time to time"
+tags: "tools,HowTo,nessus,bastard"
+---
+
+# Nessus setup/init
+
+- start: /bin/systemctl start nessusd.service
+- go to https://mobile3g:8834/ to configure your scanner
+
+- username: root
+- password: root
+
+## Troubleshooting this bastard
+
+### 1. Crash during installation : missing plugins
+
+I found in the logs that "[Wed Aug 16 22:49:00 2023][11442.1] Your installation is missing plugins. Please register and try again"
+
+* Logs at /opt/nessus/var/nessus/logs/
+
+* Register Nessus:
+
+```sh
+sudo /opt/nessus/sbin/nessuscli fetch --register <activation_code>
+```
+
+* Update Nessus Plugins:
+
+```sh
+sudo /opt/nessus/sbin/nessuscli update
+```
+
+* Start Nessus Service:
+
+```sh
+sudo service nessusd start
+```
+
+
+

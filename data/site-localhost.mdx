@@ -1,0 +1,145 @@
+---
+title: 'Localhost Website'
+desc: 'How to set up a Website on root'
+tags: 'HowTo,localhost,php'
+---
+
+
+
+
+
+
+
+
+
+1. Install Apache if you haven't already:
+
+```sh
+sudo apt update
+sudo apt install apache2
+```
+
+2. Start the Apache service:
+
+```sh
+sudo systemctl start apache2
+```
+
+3. Enable Apache to start on boot:
+
+```sh
+sudo systemctl enable apache2
+```
+
+4. Create a directory to store your PHP files. You can use the default directory /var/www/html:
+
+```sh
+sudo mkdir /var/www/html/myphpsite
+```
+
+5. Create a simple PHP file inside this directory. For example, create a file named index.php:
+
+```sh
+sudo nano /var/www/html/myphpsite/index.php
+```
+
+6. Add some PHP code to this file. For testing purposes, you can use a simple "Hello, World!" script:
+
+```sh
+<?php
+echo "Hello, World!";
+?>
+```
+
+7. Save the file and exit the text editor.
+
+Set the correct permissions for the files and directories:
+
+```sh
+sudo chown -R www-data:www-data /var/www/html/myphpsite
+```
+
+8. Access the PHP page through your web browser. Open your web browser and enter the following URL:
+
+```sh
+http://localhost/myphpsite/index.php
+```
+
+9. To access the PHP page using a custom domain like "http://myphpsite" instead of "http://localhost/myphpsite/index.php" locally, you can 
+   1. use the /etc/hosts file to map the domain to your local machine's IP address. 
+   2. You also need to configure Apache to recognize this custom domain. 
+
+Here's how you can do it:
+
+10. Edit the /etc/hosts file:
+
+Open the /etc/hosts file with a text editor using sudo:
+
+```sh
+sudo nano /etc/hosts
+```
+
+Add an entry at the end of the file that maps your custom domain to the loopback address (127.0.0.1). For example:
+
+```sh
+127.0.0.1   myphpsite
+```
+
+Save the file and exit the text editor.
+
+11. Configure Apache:
+
+Next, you need to configure Apache to recognize the custom domain. You can create a new virtual host configuration file for your site. Create a configuration file in the /etc/apache2/sites-available/ directory:
+
+```sh
+sudo nano /etc/apache2/sites-available/myphpsite.conf
+```
+
+Add the following configuration, adjusting the paths and settings as needed:
+
+```sh
+<VirtualHost *:80>
+    ServerAdmin webmaster@myphpsite
+    ServerName myphpsite
+    DocumentRoot /var/www/html/myphpsite
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Save the file and exit the text editor.
+
+12. Enable the virtual host:
+
+Enable the virtual host configuration you just created:
+
+```sh
+sudo a2ensite myphpsite.conf
+```
+
+13. Reload Apache:
+
+Reload Apache to apply the changes:
+
+```sh
+sudo systemctl reload apache2
+```
+
+Now, you should be able to access your PHP page using the custom domain "http://myphpsite" in your web browser.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
