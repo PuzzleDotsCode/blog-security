@@ -1,0 +1,159 @@
+---
+title: 'SQL navigation'
+desc: 'Commands to explore the service'
+tags: 'sql,commands,HowTo'
+---
+
+# SQL navigation
+
+## MySQL
+
+* List databases
+
+```sql
+SHOW DATABASES;
+```
+
+* List tables
+
+```sql
+USE your_database_name;
+SHOW TABLES;
+```
+
+* Describing a Table
+
+```sql
+DESCRIBE user;
+-- or
+SHOW COLUMNS FROM user;
+```
+
+* Viewing Server Logs: 
+
+Tables like "general_log" and "slow_log" store server log information. 
+
+```sql
+SELECT * FROM general_log;
+```
+
+* Accessing a Table: SELECT
+
+```sql
+-- select all
+SELECT * FROM user;
+-- select multiple columns
+SELECT column1, column2, ... FROM table_name;
+```
+
+* Sorting Values (ASC by default)
+
+Sort the Column N (Ascending by default)
+
+```sql
+MariaDB [sandbox]> SELECT * FROM users ORDER BY 1;
++----------+-----------------+------------+-----------+
+| username | password        | first_name | last_name |
++----------+-----------------+------------+-----------+
+| cokiyo   | secret@Pas5word | John       | Doe       |
+| rosikiya | Pas5word        | ZJohna     | MDoes     |
++----------+-----------------+------------+-----------+
+
+MariaDB [sandbox]> SELECT * FROM users ORDER BY 2;
++----------+-----------------+------------+-----------+
+| username | password        | first_name | last_name |
++----------+-----------------+------------+-----------+
+| rosikiya | Pas5word        | ZJohna     | MDoes     |
+| cokiyo   | secret@Pas5word | John       | Doe       |
++----------+-----------------+------------+-----------+
+```
+
+* Enumerating Columns
+
+Use UNION to know which columns are being displayed in the page. Unions allow us to add a second select statement to the original query.
+
+```sql
+MariaDB [sandbox]> SELECT * FROM users UNION ALL SELECT 1,2,3,4;
++----------+-----------------+------------+-----------+
+| username | password        | first_name | last_name |
++----------+-----------------+------------+-----------+
+| cokiyo   | secret@Pas5word | John       | Doe       |
+| rosikiya | secret@Pas5word | Johna      | Does      |
+| rosikiya | Pas5word        | ZJohna     | MDoes     |
+| 1        | 2               | 3          | 4         |
++----------+-----------------+------------+-----------+
+
+```
+
+* Modifying Data: INSERT, UPDATE, and DELETE 
+
+```sql
+INSERT INTO user (user, host, password) VALUES ('new_user', 'localhost', 'password');
+```
+
+* Managing Privileges: GRANT and REVOKE 
+
+Some tables like "user" and "db" are used for managing user privileges. 
+
+```sql
+GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
+```
+
+
+
+## PostgreSQL
+
+* List databases
+
+```sql
+\l
+```
+
+* List tables
+
+```sql
+\c your_database_name
+\dt
+```
+
+## SQLite
+
+* List databases
+
+```sql
+SELECT name FROM sqlite_master WHERE type='table';
+```
+
+* List tables
+
+```sql
+.tables
+```
+
+## SQL Server
+
+* List databases
+
+```sql
+SELECT name FROM sys.databases;
+```
+
+* List tables
+
+```sql
+USE your_database_name;
+SELECT table_name = t.name
+FROM sys.tables t
+INNER JOIN sys.schemas s ON t.schema_id = s.schema_id;
+```
+
+
+
+
+
+
+
+
+
+
+
